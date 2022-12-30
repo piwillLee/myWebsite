@@ -65,7 +65,7 @@ const handleSelect = (item) => {
 
 
   // 滚动到
-  document.getElementById(item)?.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+  document.getElementById(item)?.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
 
 
   console.log(item);

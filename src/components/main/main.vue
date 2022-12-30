@@ -37,7 +37,7 @@ import { useRouter } from "vue-router";
 const router = useRouter()
 
 const handleMoreBtnClick = () => {
-  document.getElementById('project')?.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+  document.getElementById('project')?.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
 
 }
 
