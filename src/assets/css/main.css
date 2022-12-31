@@ -1,3 +1,8 @@
 * {
   box-sizing: border-box;
 }
+
+/* 隐藏滚轴 */
+body::-webkit-scrollbar {
+  display: none;
+}

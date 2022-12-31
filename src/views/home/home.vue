@@ -1,8 +1,8 @@
 <template>
-  <div class="home">
+  <div class="home" ref="homeRef">
 
     <!-- loading -->
-    <loading v-if="!isStart" @isEnd="handleIsEnd"></loading>
+    <!-- <loading v-if="!isStart" @isEnd="handleIsEnd"></loading> -->
 
     <div class="content">
       <!-- nav -->
@@ -13,7 +13,9 @@
 
 
       <!-- 项目 -->
-      <project></project>
+      <keep-alive>
+        <project></project>
+      </keep-alive>
 
       <!-- 关于 -->
       <about></about>
@@ -29,7 +31,7 @@ import About from "@/components/about/about.vue";
 import Loading from '@/components/loading/loading.vue';
 import { ref, watch } from "vue";
 import gsap from "gsap";
-
+import { useWindowScroll, useElementBounding, useEventListener } from '@vueuse/core'
 
 const isStart = ref(false)
 
@@ -37,6 +39,11 @@ function handleIsEnd(value) {
   console.log(value);
   isStart.value = value;
 }
+const homeRef = ref()
+
+useEventListener(homeRef, 'scroll', (e) => {
+  console.log('a')
+})
 
 const mainRef = ref<InstanceType<typeof MainPage>>();
 
@@ -52,24 +59,10 @@ watch(isStart, (newValue) => {
 <style lang="less" scoped>
 .home {
   width: 100%;
-  height: 100%;
   overflow-x: hidden;
-  overflow-y: auto;
 
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
-
-  scrollbar-width:none;
-  /* Firefox*/
-  -ms-overflow-style:none;
-
-  /* IE 10+ */
   .content {
     width: 100%;
-    // height: 100%;
-
   }
 
 }
