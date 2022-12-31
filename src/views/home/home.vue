@@ -2,7 +2,7 @@
   <div class="home" ref="homeRef">
 
     <!-- loading -->
-    <!-- <loading v-if="!isStart" @isEnd="handleIsEnd"></loading> -->
+    <loading v-if="!isStart" @isEnd="handleIsEnd"></loading>
 
     <div class="content">
       <!-- nav -->
