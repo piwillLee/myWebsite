@@ -61,14 +61,8 @@ const drawer = ref(false)
 
 
 const handleSelect = (item) => {
-  console.log(item);
-
-
   // 滚动到
   document.getElementById(item)?.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
-
-
-  console.log(item);
   drawer.value = false
 }
 
@@ -78,7 +72,7 @@ const isDark = useDark();
 const toggleDark = useToggle(isDark);
 const isDarkValue = ref(true);
 
-console.log(isDarkValue.value);
+// console.log(isDarkValue.value);
 
 function handleToggle() {
   toggleDark();

@@ -95,6 +95,7 @@ const itemRight = el => {
 
 const ctx = ref();
 onMounted(() => {
+  // console.log('DOM 已挂载');
   // rightItem 元素的宽度1/2
   const halfRightItemWidth = arrayRef.value[0].offsetWidth / 2
 
@@ -136,7 +137,7 @@ onMounted(() => {
 
 const router = useRouter();
 function handleItemClick(item) {
-  console.log(item);
+  // console.log(item);
   // router.push(item.url);
 }
 </script>

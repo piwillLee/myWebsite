@@ -1,5 +1,5 @@
 <template>
-  <div class="home" ref="homeRef">
+  <div class="home">
 
     <!-- loading -->
     <loading v-if="!isStart" @isEnd="handleIsEnd"></loading>
@@ -31,24 +31,17 @@ import About from "@/components/about/about.vue";
 import Loading from '@/components/loading/loading.vue';
 import { ref, watch } from "vue";
 import gsap from "gsap";
-import { useWindowScroll, useElementBounding, useEventListener } from '@vueuse/core'
 
 const isStart = ref(false)
 
 function handleIsEnd(value) {
-  console.log(value);
+  // console.log(value);
   isStart.value = value;
 }
-const homeRef = ref()
-
-useEventListener(homeRef, 'scroll', (e) => {
-  console.log('a')
-})
-
 const mainRef = ref<InstanceType<typeof MainPage>>();
 
 watch(isStart, (newValue) => {
-  console.log(newValue);
+  // console.log(newValue);
   gsap.from('.content', { y: ' 100vh', duration: 1, ease: "sine.out" })
 
   mainRef.value?.startAnimation()

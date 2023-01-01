@@ -46,12 +46,7 @@ import { useWindowSize } from '@vueuse/core'
 const emit = defineEmits(['isEnd'])
 
 onMounted(() => {
-
-
-
   const tl = gsap.timeline({ duration: 1, ease: "power3.out" })
-
-
   tl.fromTo('.text1L', { scale: 6, x: -650, y: -500, rotate: 55 }, { x: -600, y: -300, rotate: 65, })
   tl.fromTo('.text1E1', { scale: 6, x: 750, y: -500, rotate: -55 }, { x: 800, y: -340, rotate: -65, }, "<")
   tl.fromTo('.text1E2', { scale: 6, x: 250, y: 500, rotate: 55 }, { x: 200, y: 400, rotate: 65, }, "<")
@@ -84,7 +79,7 @@ onMounted(() => {
   tl.fromTo('.text4E2', { scale: 1, x: 40, y: -23, rotate: -17 }, { x: 0, y: 0, rotate: 0, duration: 2, ease: "back.out(1.7)" }, "<")
   tl.fromTo('.text4E2', { scale: 1, x: 60, y: -13, rotate: 20 }, { x: 0, y: 0, rotate: 0, duration: 2, ease: "back.out(1.7)" }, "<")
   tl.fromTo('.text4Dot', { scale: 1, x: 50, y: -16, rotate: -12 }, { x: 0, y: 0, rotate: 0, duration: 2, ease: "back.out(1.7)" }, "<").then(() => {
-    console.log(isEnd.value);
+
     isEnd.value = true
     handleIsEnd()
   })
@@ -103,11 +98,14 @@ function handleIsEnd() {
 
 <style lang="less" scoped>
 #loading {
-  width: 100vw;
-  height: 100vh;
+
   position: relative;
 
   .flash {
+    //  当宽高设置在 #loading 上时，gsap设置的item动画不生效
+    width: 100vw;
+    height: 100vh;
+
     position: fixed;
     z-index: 999;
     top: 0;
