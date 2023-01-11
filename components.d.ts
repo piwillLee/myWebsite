@@ -8,6 +8,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     About: typeof import('./src/components/about/about.vue')['default']
+    BeiAn: typeof import('./src/components/beiAn/beiAn.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCol: typeof import('element-plus/es')['ElCol']
     ElDrawer: typeof import('element-plus/es')['ElDrawer']
@@ -17,7 +18,6 @@ declare module '@vue/runtime-core' {
     ElRow: typeof import('element-plus/es')['ElRow']
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
-    Fff: typeof import('./src/components/project/project-item/fff.vue')['default']
     Header: typeof import('./src/components/header.vue')['default']
     ItemPhoto: typeof import('./src/components/project/project-item/item-photo.vue')['default']
     Loading: typeof import('./src/components/loading/loading.vue')['default']

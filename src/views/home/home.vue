@@ -19,6 +19,9 @@
 
       <!-- 关于 -->
       <about></about>
+
+      <!-- 备案信息 -->
+      <bei-an></bei-an>
     </div>
   </div>
 </template>
@@ -26,6 +29,7 @@
 <script setup lang="ts">
 import HeaderNav from "@/components/header.vue";
 import MainPage from "@/components/main/main.vue";
+import BeiAn from "@/components/beiAn/beiAn.vue";
 import Project from "@/components/project/project.vue";
 import About from "@/components/about/about.vue";
 import Loading from '@/components/loading/loading.vue';

@@ -2,7 +2,7 @@
 
   <div id="project" ref="projectRef">
     <template v-for="(item, index) in itemConfig" :key="item.id">
-      <div class="project-item" @click="handleItemClick(item)">
+      <div class="project-item">
         <div class="itemLeft">
           <span class="left-index">0{{ index + 1 }}.</span>
           <div class="left-content">
@@ -10,20 +10,21 @@
               <h3>{{ item.name }}</h3>
             </div>
             <div class="content-text">
-              {{ item.name }}{{ item.name }}{{ item.name }}
+              {{ item.status }}
             </div>
           </div>
         </div>
         <div :ref="itemRight" class="itemRight">
           <div class="rightTop">
             <div class="index"> 0{{ index + 1 }}.</div>
-            <div class="showcase"> Showcase</div>
+            <div class="showcase hover-cursor" @click="handleShowClick(item)"> Showcase</div>
           </div>
           <div class="rightBottom">
             <div class="status">
-              Project in progress
+              Project schedule：
+              {{ item.status }}
             </div>
-            <div class="arrow">
+            <div class="arrow hover-cursor" @click="handleShowClick(item)">
               <el-icon>
                 <TopRight />
               </el-icon>
@@ -47,38 +48,28 @@ gsap.registerPlugin(ScrollTrigger);
 const itemConfig = [
   {
     id: "1",
-    name: "作品分享",
-    url: "photo"
+    name: "我的摄影网站",
+    url: "http://photo.willlee.cn",
+    status: 'Done',
+
   },
   {
     id: "2",
-    name: "后台管理系统",
-    url: "/cms"
+    name: "天气App",
+    url: "",
+    status: 'prcessing',
   },
   {
     id: "3",
-    name: "移动端网站",
-    url: "/web",
-  },
-  {
-    id: "4",
-    name: "大屏项目",
-    url: "",
-  },
-  {
-    id: "5",
-    name: "天气App",
-    url: "/weather",
-  },
-  {
-    id: "6",
     name: "color chief",
     url: "",
+    status: 'prcessing',
   },
   {
     id: "7",
     name: "浏览器主页",
     url: "",
+    status: 'prcessing',
   },
 ];
 
@@ -136,9 +127,10 @@ onMounted(() => {
 
 
 const router = useRouter();
-function handleItemClick(item) {
-  // console.log(item);
-  // router.push(item.url);
+function handleShowClick(item) {
+  if (item.url.length > 5) {
+    window.open(item.url);
+  }
 }
 </script>
 
@@ -201,6 +193,7 @@ function handleItemClick(item) {
       background-color: rgb(29, 29, 29);
       z-index: -1;
       white-space: nowrap;
+      color: rgb(125, 125, 125);
 
 
       display: flex;
@@ -215,7 +208,8 @@ function handleItemClick(item) {
       }
 
       .left-content {
-        opacity: 0.6;
+        // opacity: 0.6;
+
 
 
 
@@ -233,7 +227,7 @@ function handleItemClick(item) {
       top: 0;
       border-radius: 64px;
       height: 100%;
-      background-color: #a6a2ff;
+      background-color: rgb(28, 99, 161);
 
       display: flex;
       flex-direction: column;
