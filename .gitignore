@@ -9,7 +9,7 @@ lerna-debug.log*
 
 node_modules
 .DS_Store
-dist
+# dist 暂时上传，宝塔拉取代码后无法npm install 暂时直接上传
 dist-ssr
 coverage
 *.local
