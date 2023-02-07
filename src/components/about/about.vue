@@ -102,8 +102,8 @@
 
 
 
-  <el-dialog v-model="centerDialogVisible" appendToBody center>
-    <el-image style="max-width:400px" src="src/assets/img/wechat.jpg" fit="cover" />
+  <el-dialog v-model="centerDialogVisible" appendToBody align-center>
+    <el-image style="max-width:400px" src="wechat.jpg" fit="cover" />
   </el-dialog>
 </template>
 
