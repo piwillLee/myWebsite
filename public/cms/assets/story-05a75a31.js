@@ -1,0 +1,1 @@
+import{h as s,d as r}from"./index-bb78072d.js";function n(){return s.post({url:"/story/list"})}function e(t){return s.post({url:"/story",data:t})}const i=r("story",{state:()=>({storyList:[],totalCount:0}),actions:{getStoryListAction(){n().then(t=>{const o=t.data;this.storyList=o.list,this.totalCount=o.list.length})},postStoryInfoAction(t){e(t)}}}),y=i;export{y as u};

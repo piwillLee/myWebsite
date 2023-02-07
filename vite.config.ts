@@ -17,6 +17,7 @@ export default defineConfig({
 			resolvers: [ElementPlusResolver()],
 		}),
 	],
+	base: process.env.NODE_ENV === 'production' ? './' : '/',
 	resolve: {
 		alias: {
 			'@': fileURLToPath(new URL('./src', import.meta.url)),

@@ -1,0 +1,1 @@
+import{aS as o,J as t,K as c,aQ as s,aR as a,ad as _}from"./index-b55d42b6.js";const d={},n=e=>(s("data-v-73c45893"),e=e(),a(),e),p={class:"about"},r=n(()=>_("h2",null,"About Me",-1)),u=[r];function i(e,l){return t(),c("div",p,u)}const f=o(d,[["render",i],["__scopeId","data-v-73c45893"]]);export{f as default};

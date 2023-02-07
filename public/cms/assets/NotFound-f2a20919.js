@@ -1,0 +1,1 @@
+import{_ as e,o as c,c as t,ai as s,aj as _,O as a}from"./_plugin-vue_export-helper-fbc28b02.js";const n={},d=o=>(s("data-v-ab59b12c"),o=o(),_(),o),p={class:"not-found"},r=d(()=>a("h2",null,"您输入的路径地址不正确，请联系管理员",-1)),i=[r];function u(o,l){return c(),t("div",p,i)}const h=e(n,[["render",u],["__scopeId","data-v-ab59b12c"]]);export{h as default};

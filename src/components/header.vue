@@ -11,7 +11,6 @@
           <el-menu-item index="home">Home</el-menu-item>
           <el-menu-item index="project">Project</el-menu-item>
           <el-menu-item index="about">About</el-menu-item>
-          <!-- <el-menu-item index="3">Photograph</el-menu-item> -->
           <el-switch @change="handleToggle" v-model="isDarkValue" class="mt-2" style="margin-left: 24px" inline-prompt
             :active-icon="Moon" :inactive-icon="Sunny" />
         </div>
@@ -23,13 +22,13 @@
           </el-icon>
         </el-button>
       </template>
-
-
-      <el-drawer size="100%" v-model="drawer" title="I am the title" :with-header="false">
+      <el-drawer size="100%" v-model="drawer" :with-header="false">
         <div class="center">
-          <el-menu-item index="/">Home</el-menu-item>
-          <el-menu-item index="/project">Project</el-menu-item>
-          <el-menu-item index="/about">About</el-menu-item>
+          <el-menu-item index="home">Home</el-menu-item>
+          <el-menu-item index="project">Project</el-menu-item>
+          <el-menu-item index="about">About</el-menu-item>
+          <el-switch @change="handleToggle" v-model="isDarkValue" class="mt-2" style="margin-left: 24px" inline-prompt
+            :active-icon="Moon" :inactive-icon="Sunny" />
           <el-button @click="drawer = false">
             <el-icon>
               <Close />
@@ -119,6 +118,10 @@ function handleToggle() {
     user-select: none;
   }
 
+  .el-switch {
+
+    margin-left: 0 !important;
+  }
 
   .center {
     display: flex;
@@ -126,7 +129,7 @@ function handleToggle() {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     // background-color: red;
 
     .el-button {

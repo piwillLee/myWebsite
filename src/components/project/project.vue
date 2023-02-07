@@ -2,7 +2,7 @@
 
   <div id="project" ref="projectRef">
     <template v-for="(item, index) in itemConfig" :key="item.id">
-      <div class="project-item">
+      <div :class="!isMobile() ? 'project-item' : 'project-item-mobile'">
         <div class="itemLeft">
           <span class="left-index">0{{ index + 1 }}.</span>
           <div class="left-content">
@@ -33,7 +33,11 @@
         </div>
       </div>
     </template>
+    <el-button size="large" color=" rgb(28, 99, 161)" class="button" @click="getMoreProject">
+      查看更多
+    </el-button>
   </div>
+
 
 </template>
 
@@ -49,27 +53,15 @@ const itemConfig = [
   {
     id: "1",
     name: "我的摄影网站",
-    url: "http://photo.willlee.cn",
+    url: "https://photo.willlee.cn",
     status: 'Done',
 
   },
   {
     id: "2",
-    name: "天气App",
-    url: "",
-    status: 'prcessing',
-  },
-  {
-    id: "3",
-    name: "color chief",
-    url: "",
-    status: 'prcessing',
-  },
-  {
-    id: "7",
-    name: "浏览器主页",
-    url: "",
-    status: 'prcessing',
+    name: "移动端天气App",
+    url: "https://weather.willlee.cn",
+    status: 'Improving',
   },
 ];
 
@@ -84,44 +76,90 @@ const itemRight = el => {
   }
 }
 
+function isMobile() {
+  let flag = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
+  return flag;
+}
+
 const ctx = ref();
 onMounted(() => {
-  // console.log('DOM 已挂载');
+
   // rightItem 元素的宽度1/2
   const halfRightItemWidth = arrayRef.value[0].offsetWidth / 2
+  if (isMobile()) {
+    // 移动端布局适配
 
-  // gsap scrollTrigger 动画
-  ctx.value = gsap.context((self) => {
-    if (self) {
-      const leftItems = self.selector('.itemLeft');
-      const rightItems = self.selector('.itemRight');
-      leftItems.forEach((item) => {
-        gsap.from(item, {
-          width: 20,
-          x: 500,
-          scrollTrigger: {
-            trigger: item,
-            start: 'bottom bottom',
-            end: 'top 20%',
-            scrub: true,
-            // markers: true // 显示标记
-          },
+    // gsap scrollTrigger 动画
+    ctx.value = gsap.context((self) => {
+      if (self) {
+        const leftItems = self.selector('.itemLeft');
+        const rightItems = self.selector('.itemRight');
+        leftItems.forEach((item) => {
+          gsap.from(item, {
+            x: '100%',
+            scrollTrigger: {
+              trigger: item,
+              start: 'bottom bottom',
+              end: 'top 20%',
+              scrub: true,
+              // markers: true // 显示标记
+            },
+          });
         });
-      });
-      rightItems.forEach((item) => {
-        gsap.from(item, {
-          x: -halfRightItemWidth,
-          scrollTrigger: {
-            trigger: item,
-            start: 'bottom bottom',
-            end: 'top 20%',
-            scrub: true,
-            // markers: true // 显示标记
-          },
+        rightItems.forEach((item) => {
+          gsap.from(item, {
+            x: '100%',
+            scrollTrigger: {
+              trigger: item,
+              start: 'bottom bottom',
+              end: 'top 20%',
+              scrub: true,
+              // markers: true // 显示标记
+            },
+          });
         });
-      });
-    }
-  }, projectRef.value); // <- Scope!
+      }
+    }, projectRef.value); // <- Scope!
+
+  } else {
+    // alert("pc端");
+
+
+    // gsap scrollTrigger 动画
+    ctx.value = gsap.context((self) => {
+      if (self) {
+        const leftItems = self.selector('.itemLeft');
+        const rightItems = self.selector('.itemRight');
+        leftItems.forEach((item) => {
+          gsap.from(item, {
+            width: 0,
+            x: 500,
+            opacity: 0,
+            scrollTrigger: {
+              trigger: item,
+              start: 'bottom bottom',
+              end: 'top 20%',
+              scrub: true,
+              // markers: true // 显示标记
+            },
+          });
+        });
+        rightItems.forEach((item) => {
+          gsap.from(item, {
+            x: -halfRightItemWidth,
+
+            scrollTrigger: {
+              trigger: item,
+              start: 'bottom bottom',
+              end: 'top 20%',
+              scrub: true,
+              // markers: true // 显示标记
+            },
+          });
+        });
+      }
+    }, projectRef.value); // <- Scope!
+  }
 
 })
 
@@ -131,6 +169,10 @@ function handleShowClick(item) {
   if (item.url.length > 5) {
     window.open(item.url);
   }
+}
+
+function getMoreProject() {
+  router.push('/project')
 }
 </script>
 
@@ -145,7 +187,6 @@ function handleShowClick(item) {
   padding: 20px;
 }
 
-
 #project {
   display: flex;
   justify-content: center;
@@ -153,7 +194,7 @@ function handleShowClick(item) {
   width: 100%;
   height: 100%;
   flex-wrap: wrap;
-  padding: 16px 20px;
+
 
   .box {
     width: 800px;
@@ -175,10 +216,71 @@ function handleShowClick(item) {
     background-color: rgb(30, 172, 161);
   }
 
+  // 移动端适配
+  .project-item-mobile {
+    width: 100%;
+    height: 300px;
+
+    // margin-bottom: 32px !important;
+    display: flex;
+    flex-direction: column;
+
+    .itemLeft {
+      width: 100%;
+      height: 200px;
+      background-color: rgb(29, 29, 29);
+      z-index: -1;
+      white-space: nowrap;
+      color: rgb(125, 125, 125);
+      display: flex;
+      align-items: center;
+
+      .left-index {
+        margin: 64px;
+        font-size: 36px;
+        font-weight: 700;
+        opacity: 0.2;
+      }
+
+      .left-content {
+        .content-title {
+          margin-bottom: 16px;
+        }
+      }
+    }
+
+    .itemRight {
+      width: 100%;
+      height: 200px;
+      background-color: rgb(28, 99, 161);
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 16px 32px;
+
+      .rightTop {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .rightBottom {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        .arrow {
+          font-size: 32px;
+        }
+      }
+    }
+  }
 
   .project-item {
     width: 100%;
     height: 280px;
+    padding: 16px 20px;
 
     margin-bottom: 32px !important;
     position: relative;
@@ -253,11 +355,10 @@ function handleShowClick(item) {
       }
     }
 
+  }
 
-
-
-
-
+  .button {
+    margin-top: 16px;
   }
 
   .project-item-sm {

@@ -10,3 +10,7 @@ body::-webkit-scrollbar {
 .hover-cursor {
 	cursor: pointer;
 }
+
+.el-dialog__body {
+	text-align: center !important;
+}

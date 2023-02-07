@@ -1,7 +1,7 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 
 const router = createRouter({
-	history: createWebHistory(import.meta.env.BASE_URL),
+	history: createWebHashHistory(import.meta.env.BASE_URL),
 	routes: [
 		{
 			path: '/',
@@ -9,25 +9,15 @@ const router = createRouter({
 			component: () => import('../views/home/home.vue'),
 		},
 		{
-			path: '/project',
-			name: 'project',
-			component: () => import('../views/project/project.vue'),
-			children: [
-				{
-					path: '/photo',
-					component: () => import('../views/project/project-item/item-photo.vue'),
-				},
-			],
-		},
-		{
 			path: '/about',
 			name: 'about',
 			component: () => import('../views/about/about.vue'),
 		},
 		{
-			path: '/project/photo',
-			component: () => import('../views/project/project-item/item-photo.vue'),
+			path: '/project',
+			component: () => import('../views/project-demo/project-demo.vue'),
 		},
+
 		// {
 		//   path: "/about",
 		//   name: "about",
